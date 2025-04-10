@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+
+
+<article class="post">
+
+  <h1 class="post-title">{{ page.title }}</h1>
+  <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
+  {{ content }}
+
+
+  <div id="toc-toggle">📑</div>
+<div id="toc-wrapper">
+  <!-- <div id="toc-close">✖</div> -->
+  <div id="toc-container">
+    <div class="toc-title">目录</div>
+    <ul class="toc-list"></ul>
+  </div>
+</div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const content = document.querySelector(".post");
+      const tocList = document.querySelector(".toc-list");
+      if (!content || !tocList) return;
+    
+      const headings = content.querySelectorAll("h2, h3, h4, h5, h6");
+      const numberStack = [0, 0, 0, 0, 0];
+    
+      headings.forEach((heading, index) => {
+        const level = parseInt(heading.tagName.charAt(1));
+        heading.id = heading.id || `heading-${index}`;
+    
+        numberStack[level - 2]++;
+        for (let i = level - 1; i < numberStack.length; i++) numberStack[i] = 0;
+    
+        const numberStr = numberStack.slice(0, level - 1 + 1).filter(n => n > 0).join(".");
+    
+        const li = document.createElement("li");
+        li.classList.add(`toc-level-${level}`);
+        li.innerHTML = `<a href="#${heading.id}">${numberStr} ${heading.textContent}</a>`;
+        tocList.appendChild(li);
+      });
+    
+      // 展开/收起功能
+      const wrapper = document.getElementById("toc-wrapper");
+      document.getElementById("toc-toggle").onclick = () => {
+        wrapper.style.display = wrapper.style.display === "block" ? "none" : "block";
+      };
+      document.getElementById("toc-close").onclick = () => {
+        wrapper.style.display = "none";
+      };
+    });
+    </script>
+    
+</article>
