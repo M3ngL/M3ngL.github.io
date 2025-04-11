@@ -55,4 +55,40 @@ layout: default
     });
     </script>
     
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const regex = /(https?:\/\/[^\s<>"]+)/g;
+      
+        document.querySelectorAll("p, li").forEach(el => {
+          // 只替换文本节点中的 URL，避免破坏已有的 HTML
+          el.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              const replaced = node.textContent.replace(regex, url => {
+                return `<a href="${url}" target="_blank">${url}</a>`;
+              });
+      
+              if (replaced !== node.textContent) {
+                const span = document.createElement("span");
+                span.innerHTML = replaced;
+                el.replaceChild(span, node);
+              }
+            }
+          });
+        });
+      });
+      </script>
+      
 </article>
