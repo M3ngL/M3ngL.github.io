@@ -4,19 +4,18 @@ title: Home
 ---
 
 <div class="posts">
-  <!-- {% for post in paginator.posts %}
-  <article class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+  {% assign postsByCategory = site.posts | group_by: "category" %}
+{% for category in postsByCategory %}
+  <h2>{{ category.name }}</h2>
 
-    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
-
-    {{ post.content }}
-  </article>
-  {% endfor %} -->
+  <ul style="margin-bottom: 50px;">
+    {% for post in category.items %}
+      <li style="margin-bottom: 20px;">
+        <a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
   
 </div>
 
