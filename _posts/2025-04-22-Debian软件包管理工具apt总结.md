@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Debian软件包管理工具apt总结
-category: "Defalut"
+category: "Linux"
 date: 2025-04-22
 ---
 
