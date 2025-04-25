@@ -43,13 +43,17 @@
 
   --heading-color: var(--gray-900);
 
-  --border-color: var(--gray-300);
+  // --border-color: var(--gray-300);
+  --border-color: rgba(255, 255, 255, 0.15);
+
   --border-radius: 0.25rem;
 
   --code-font: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   --code-color: var(--grape);
-  --code-bg: var(--gray-000);
+  // --code-bg: var(--gray-000);
+  --code-bg: #000000;     /* 常见的深色代码背景，与整体风格协调 */
+
 
   --spacer: 1rem;
   --spacer-2: calc(var(--spacer) * 1.5);
@@ -69,19 +73,27 @@
 
     --border-color: rgba(255, 255, 255, 0.15);
 
-    --code-bg: var(--gray-900);
+    // --code-bg: var(--gray-900);
+    --code-bg: #000000;     /* 常见的深色代码背景，与整体风格协调 */
+
   }
 }
 
 // Dark Poole theme
 [data-theme="dark-poole"] {
-  --body-color: var(--dark-poole-002);
-  --body-bg: var(--dark-poole-001);
-  // --body-color: #201b1b;
-  // --body-bg: #080202;
-  --heading-color: var(--dark-poole-002);
-  --link-color: var(--dark-poole-link-color);
-  --link-hover-color: var(--dark-poole-link-hover);
-  --border-color: rgba(255, 255, 255, 0.15);
-  --code-bg: var(--gray-900);
+  // --body-color: var(--dark-poole-002);
+  // --body-bg: var(--dark-poole-001);
+  // --heading-color: var(--dark-poole-002);
+  // --link-color: var(--dark-poole-link-color);
+  // --link-hover-color: var(--dark-poole-link-hover);
+  // --border-color: rgba(255, 255, 255, 0.15);
+  // --code-bg: var(--gray-900);
+
+  --body-color: #d3d7da; /* 更柔和的浅色，与深背景对比清晰 */
+  --body-bg: #17191a;    /* 你提供的新背景颜色 */
+  --heading-color: #e0e2e4; /* 比 body-color 略亮，突出标题 */
+  --link-color: #989071;   /* 偏蓝的浅色，在深背景下醒目 */
+  --link-hover-color: #989071; /* 鼠标悬停时更亮的蓝色 */
+  --border-color: rgba(255, 255, 255, 0.1); /* 略微降低透明度，更融入深背景 */
+  --code-bg: #000000;     /* 常见的深色代码背景，与整体风格协调 */
 }

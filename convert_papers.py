@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     # 遍历当前目录下的所有 .md 文件
     for filename in os.listdir("./tmp"):
-        if filename.endswith(".md"):
+        if filename.endswith(".md") and filename not in os.listdir("./tmp/img_done"):
             # 处理图片
             updateImg(filename)
             # 更新标题

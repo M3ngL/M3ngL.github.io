@@ -17,12 +17,15 @@ pre {
   margin-top: 0;
   margin-bottom: var(--spacer-3);
   overflow: auto;
+  scrollbar-color: #555 #222; /* thumb track */
+  scrollbar-width: 3px;
 }
 
 .highlight {
   padding: var(--spacer);
   margin-bottom: var(--spacer);
-  background-color: var(--code-bg);
+  // background-color: var(--code-bg);
+  background-color: #333333;     
   border-radius: var(--border-radius);
 
   pre {

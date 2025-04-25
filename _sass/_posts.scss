@@ -70,13 +70,15 @@
   position: fixed;
   top: 120px;
   right: 10px;
-  background: #161b20;
+  background: #74a6d8;
   color: black;
   padding: 6px 10px;
   border-radius: 5px;
   cursor: pointer;
   z-index: 1001;
 }
+
+
 
 /* 目录整体容器 */
 #toc-wrapper {
@@ -86,8 +88,8 @@
   width: 300px;
   max-height: 80vh;
   overflow-y: auto;
-  background: black;
-  border-left: 2px solid #ccc;
+  background: rgb(0, 0, 0);
+  border-left: 2px solid #3e4446;
   padding: 1rem;
   z-index: 1000;
   display: none; /* 默认隐藏 */
@@ -103,7 +105,7 @@
 //   color: #666;
 // }
 
-/* 标题和列表样式 */
+/* 目录样式 */
 .toc-title {
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -116,13 +118,15 @@
 .toc-list li {
   margin: 0.4em 0;
 }
-.toc-level-2 { margin-left: 0; }
-.toc-level-3 { margin-left: 1.2em; }
-.toc-level-4 { margin-left: 2.4em; }
+.toc-level-2 { padding-left: 0; }
+.toc-level-3 { padding-left: 1.2em; }
+.toc-level-4 { padding-left: 2.4em; }
+.toc-level-5 { padding-left: 3.6em; }
+
 
 .toc-list a {
   text-decoration: none;
-  color: #6e8094;
+  color: #989071;
 }
 .toc-list a:hover {
   text-decoration: underline;
