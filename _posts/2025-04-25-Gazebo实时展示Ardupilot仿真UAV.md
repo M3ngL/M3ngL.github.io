@@ -131,8 +131,9 @@ Use 'gz help <command>' to print help for a command.
 `gz sim`  启动的其他设置参数
 
 ````bash
---render-fps 60
---render-engine ogre
+--render-engine
+--render-engine-gui
+--render-engine-server
 ````
 
 ## Gazebo + ardupilot
