@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Gazebo实时展示Ardupilot仿真UAV
-category: "Ardupilot仿真"
+title: Gazebo实时展示ArduPilot仿真UAV
+category: "ArduPilot仿真"
 date: 2025-04-25
 ---
 
