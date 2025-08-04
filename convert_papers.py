@@ -72,7 +72,7 @@ if __name__ == "__main__":
     # 设置当前日期作为 front-matter 的日期
     today = datetime.now().strftime('%Y-%m-%d')
     
-    category = "Defalut"
+    category = "Other"
 
     img_dir = "pic"
     os.makedirs(img_dir, exist_ok=True)
