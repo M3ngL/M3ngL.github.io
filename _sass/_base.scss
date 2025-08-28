@@ -8,7 +8,8 @@
 
 body {
   margin: 0;
-  font-family: var(--body-font);
+  // font-family: var(--body-font);
+  font-family: "Segoe UI", Arial, "FangSong", "Times New Roman";
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
   color: var(--body-color);
@@ -16,6 +17,7 @@ body {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
 
 // No `:visited` state is required by default (browsers will use `a`)
 a {
