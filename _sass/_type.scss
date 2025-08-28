@@ -10,27 +10,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 3.5rem;
 }
 
 h2 {
-  margin-top: 1rem;
-  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 2.5rem;
 }
 
 h3 {
-  margin-top: 1.5rem;
-  font-size: 1.25rem;
+  margin-top: 1.4rem;
+  font-size: 2.3rem;
+  // color: #66CCFF; 
 }
 
-h4, h5, h6 {
+h4{
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 1.75rem;
+  color: #99CCFF; 
+}
+
+h5, h6 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  line-height: 2;
+  letter-spacing: 0.05em; // 字母间距
+  // word-spacing: 0.05em;    // 单词间距
 }
 
 ul, ol, dl {

@@ -70,13 +70,30 @@ mark {
 }
 
 
-article h2,
-article h3,
-article h4,
-article h5,
-article h6 {
+article h2{
   position: relative;
   padding-bottom: 0.3em;
   margin-bottom: 1em;
   border-bottom: 3px solid #53595d;
+}
+article h3{
+  position: relative;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.5em;
+}
+article h4 {
+  position: relative;
+  padding-bottom: 0.3em;
+  // margin-bottom: 1.5em;
+}
+article h5 {
+  position: relative;
+  padding-bottom: 0.3em;
+  // margin-bottom: 1.5em;
+}
+article h6 {
+  position: relative;
+  padding-bottom: 0.3em;
+  // margin-bottom: 1.5em;
+  // border-bottom: 3px solid #53595d;
 }

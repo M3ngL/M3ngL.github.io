@@ -10,7 +10,9 @@
 
 .masthead-title {
   margin-bottom: 0;
-
+  font-size: 1.5rem;      // 主页标题大小
+  line-height: 1.1;       // 主页标题行间距
+  font-weight: 700;
   a {
     color: inherit;
     text-decoration: none;
