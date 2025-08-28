@@ -80,8 +80,12 @@ abbr {
 blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: var(--gray-500);
-  border-left: .25rem solid var(--border-color);
+  // color: var(--gray-500);
+  color: #90EE90;
+
+  // border-left: .25rem solid var(--border-color);
+  border-left: .25rem solid #FFFFFF;
+
 
   p:last-child {
     margin-bottom: 0;
