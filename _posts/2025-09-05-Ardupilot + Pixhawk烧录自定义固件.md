@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ardupilot + Pixhawk烧录自定义固件
-category: "Ardupilot"
+category: "ArduPilot"
 date: 2025-09-05
 ---
 

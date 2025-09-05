@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 判断本地Git项目(ArduPilot)的版本
-category: "ArduPilot仿真"
+category: "ArduPilot"
 date: 2025-05-14
 ---
 
