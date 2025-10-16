@@ -10,6 +10,10 @@ pre {
 
 code {
   font-size: 85%;
+  background-color: var(--inline-code-bg, #2f3335);
+  color: var(--inline-code-color, #f89704); /* 内联代码文字色：红色 */
+  border-radius: var(--border-radius, 3px);
+  padding: 3px 4px; /* 内边距 */
 }
 
 pre {
@@ -20,6 +24,13 @@ pre {
   scrollbar-color: #555 #222; /* thumb track */
 
   scrollbar-width: 3px;
+}
+
+.highlight code {
+  background-color: transparent; /* 防止内联代码背景干扰 */
+  color: inherit; /* 继承 pre 的文字颜色 */
+  padding: 0; /* 移除内联代码的内边距 */
+  font-size: 85%; /* 与内联代码一致，恢复原有字体大小 */
 }
 
 .highlight {
