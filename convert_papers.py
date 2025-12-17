@@ -63,6 +63,7 @@ def updateImg(fileName):
             modified = modified.replace(old_md_img, new_md_img)
         except Exception as e:
             print(f"⚠️ 下载失败: {url}，原因: {e}")
+            return
 
     # 保存修改后的文件
     with open("./tmp/img_done/" + fileName, "w", encoding="utf-8") as f:
