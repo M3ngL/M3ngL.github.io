@@ -55,7 +55,7 @@ int sleep(int);
 
 关键的跳转点位于 `user/usys.S`
 
-````assembly
+````nasm
 .global sleep
 sleep:
  li a7, SYS_sleep

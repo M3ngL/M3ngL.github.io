@@ -367,7 +367,7 @@ New value = 0
 
 此时执行到的位置与 `=>` 一致，前后汇编代码如下，
 
-````assembly
+````nasm
    0x8000211e <sys_sleep+10>:   sd      s3,24(sp)
    0x80002120 <sys_sleep+12>:   add     s0,sp,64
    0x80002122 <sys_sleep+14>:   add     a1,s0,-52
@@ -677,7 +677,7 @@ struct run *head = &a;          // 链表头指针，指向第一个节点
 
    2. 执行pl脚本`usys.pl`通过硬编码方式生成汇编代码`usys.S`，也就是汇编存根，如下
 
-````assembly
+````nasm
  trace:
      li a7, SYS_trace		
      ecall				# ecall调用system call,跳到内核态的统一系统调用处理函数syscall()

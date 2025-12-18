@@ -5,7 +5,6 @@ import shutil
 from urllib.parse import urlparse
 import requests
 
-
 def updateTitle(fileName):
     with open("./tmp/img_done/" + filename, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -14,10 +13,15 @@ def updateTitle(fileName):
 
     for line in lines:
         if title is None:
-            match = re.match(r'^#\s+(.+)', line.strip())
-            if match:
-                title = match.group(1).strip()
+            match_title = re.match(r'^#\s+(.+)', line.strip())
+            if match_title:
+                title = match_title.group(1).strip()
                 continue  # 不保留这行标题
+            
+        # 匹配代码块语言为assembly，替换为nasm
+        # blog使用的Rouge不支持assembly，只支持nasm
+        if re.match(r'^````assembly\b', line.strip()):
+            line = re.sub(r'^````assembly\b', '````nasm', line.strip())
         content_lines.append(line)
 
     if title is None:
