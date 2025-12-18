@@ -72,3 +72,51 @@ pre {
 .gist .markdown-body {
   padding: 15px !important;
 }
+
+.highlighter-rouge {
+  position: relative;
+}
+
+.highlighter-rouge.language-url::before {
+  content: "URL";
+}
+
+
+.highlighter-rouge.language-bash::before {
+  content: "Bash";
+}
+
+.highlighter-rouge.language-nasm::before {
+  content: "NASM";
+}
+
+.highlighter-rouge.language-assembly::before {
+  content: "ASM";
+}
+
+.highlighter-rouge.language-c::before {
+  content: "C";
+}
+
+.highlighter-rouge.language-cpp::before {
+  content: "C++";
+}
+
+.highlighter-rouge.language-python::before {
+  content: "Python";
+}
+
+.highlighter-rouge::before {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+
+  font-size: 16px;
+  font-family: var(--code-font);
+  color: #bbb;
+  background: rgba(0, 0, 0, 0.35);
+
+  padding: 2px 8px;
+  border-radius: 10px;
+  pointer-events: none;
+}
