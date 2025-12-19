@@ -21,7 +21,7 @@ def updateTitle(fileName):
         # 匹配代码块语言为assembly，替换为nasm
         # blog使用的Rouge不支持assembly，只支持nasm
         if re.match(r'^````assembly\b', line.strip()):
-            line = re.sub(r'^````assembly\b', '````nasm', line.strip())
+            line = re.sub(r'^````assembly\b', '````nasm\n', line.strip())
         content_lines.append(line)
 
     if title is None:
