@@ -70,8 +70,8 @@
   position: fixed;
   top: 120px;
   right: 10px;
-  background: #74a6d8;
-  color: black;
+  background: var(--toc-toggle-bg);
+  color: var(--toc-toggle-color);
   padding: 6px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -88,8 +88,8 @@
   width: 300px;
   max-height: 80vh;
   overflow-y: auto;
-  background: rgb(0, 0, 0);
-  border-left: 2px solid #3e4446;
+  background: var(--toc-bg);
+  border-left: 2px solid var(--toc-border-color);
   padding: 1rem;
   z-index: 1000;
   display: none; /* 默认隐藏 */
@@ -126,7 +126,7 @@
 
 .toc-list a {
   text-decoration: none;
-  color: #989071;
+  color: var(--toc-link-color);
 }
 .toc-list a:hover {
   text-decoration: underline;

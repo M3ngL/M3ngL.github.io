@@ -1,21 +1,17 @@
 :root {
+  // Grayscale
   --gray-000: #f8f9fa;
   --gray-100: #f1f3f5;
   --gray-200: #e9ecef;
   --gray-300: #dee2e6;
   --gray-400: #ced4da;
   --gray-500: #adb5bd;
-  // --gray-500: #FFFFFF;
-
   --gray-600: #868e96;
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
-  --dark-poole-001: hsl(200, 3%, 12%);
-  --dark-poole-002: hsl(0, 0%, 85%);
-  --dark-poole-link-color: rgba(255, 255, 255, 0.75);
-  --dark-poole-link-hover: #fff;
 
+  // Accents
   --red: #fa5252;
   --pink: #e64980;
   --grape: #be4bdb;
@@ -32,70 +28,277 @@
   --blue-400: #4dabf7;
   --yellow-100: #fff3bf;
 
+  // Typography
   --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --body-font-size: 18px;
   --body-line-height: 1.5;
-  --body-color: var(--gray-700);
-  --body-bg: #fff;
 
-  --link-color: var(--blue);
-  --link-hover-color: #1c7ed6;
+  // Light theme (default)
+  --body-color: #24292f;
+  --body-bg: #ffffff;
 
-  --heading-color: var(--gray-900);
+  --link-color: #0969da;
+  --link-hover-color: #0550ae;
 
-  // --border-color: var(--gray-300);
-  --border-color: rgba(255, 255, 255, 0.15);
+  --heading-color: #1a1d20;
+  --heading-border-color: #d0d7de;
 
+  --h4-color: #0969da;
+
+  --blockquote-color: #1a7f37;
+  --blockquote-border-color: #2da44e;
+
+  --border-color: #d0d7de;
   --border-radius: 0.25rem;
 
+  // Code
   --code-font: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   --code-color: var(--grape);
-  // --code-bg: var(--gray-000);
-  --code-bg: #000000;     /* 常见的深色代码背景，与整体风格协调 */
+  --code-bg: #f6f8fa;
 
+  --inline-code-bg: rgba(175, 184, 193, 0.2);
+  --inline-code-color: #24292f;
+
+  --code-block-bg: #f6f8fa;
+  --code-scrollbar-thumb: #afb8c1;
+  --code-scrollbar-track: #eaeef2;
+  --code-label-color: #656d76;
+  --code-label-bg: rgba(175, 184, 193, 0.4);
+
+  // TOC
+  --toc-toggle-bg: #0969da;
+  --toc-toggle-color: #ffffff;
+  --toc-bg: #ffffff;
+  --toc-border-color: #d0d7de;
+  --toc-link-color: #0969da;
+
+  // Misc
+  --swatch-shadow: rgba(0, 0, 0, 0.15);
 
   --spacer: 1rem;
   --spacer-2: calc(var(--spacer) * 1.5);
   --spacer-3: calc(var(--spacer) * 3);
+
+  // Syntax highlighting - light (GitHub-like)
+  --syntax-background: #f6f8fa;
+  --syntax-highlight-bg: rgba(0, 0, 0, 0.05);
+  --syntax-text: #24292f;
+  --syntax-comment: #6e7781;
+  --syntax-keyword: #cf222e;
+  --syntax-string: #0a3069;
+  --syntax-number: #0550ae;
+  --syntax-function: #8250df;
+  --syntax-class: #953800;
+  --syntax-variable: #953800;
+  --syntax-operator: #24292f;
+  --syntax-tag: #116329;
+  --syntax-attribute: #0550ae;
+  --syntax-constant: #0550ae;
+  --syntax-error: #cf222e;
+  --syntax-error-bg: #ffebe9;
+  --syntax-heading: #0550ae;
+  --syntax-prompt: #0550ae;
+  --syntax-output: #656d76;
+  --syntax-whitespace: #afb8c1;
+  --syntax-insertion-bg: #dafbe1;
+  --syntax-insertion-border: #116329;
+  --syntax-deletion-bg: #ffebe9;
+  --syntax-deletion-border: #cf222e;
+  --syntax-others: #0550ae;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --body-color: var(--gray-300);
-    --body-bg: var(--gray-800);
+    --body-color: #d3d7da;
+    --body-bg: #17191a;
 
+    --link-color: #989071;
+    --link-hover-color: #989071;
 
-    --heading-color: #fff;
+    --heading-color: #e0e2e4;
+    --heading-border-color: #53595d;
 
-    --link-color: var(--blue-300);
-    --link-hover-color: var(--blue-400);
+    --h4-color: #99ccff;
 
-    --border-color: rgba(255, 255, 255, 0.15);
+    --blockquote-color: #90ee90;
+    --blockquote-border-color: #ffffff;
 
-    // --code-bg: var(--gray-900);
-    --code-bg: #000000;     /* 常见的深色代码背景，与整体风格协调 */
+    --border-color: rgba(255, 255, 255, 0.1);
 
+    --code-bg: #000000;
+
+    --inline-code-bg: #2f3335;
+    --inline-code-color: #f89704;
+
+    --code-block-bg: #262a2b;
+    --code-scrollbar-thumb: #555555;
+    --code-scrollbar-track: #222222;
+    --code-label-color: #bbbbbb;
+    --code-label-bg: rgba(0, 0, 0, 0.35);
+
+    --toc-toggle-bg: #74a6d8;
+    --toc-toggle-color: #000000;
+    --toc-bg: #000000;
+    --toc-border-color: #3e4446;
+    --toc-link-color: #989071;
+
+    --swatch-shadow: rgba(255, 255, 255, 0.15);
+
+    // Syntax highlighting - dark (current)
+    --syntax-background: #262a2b;
+    --syntax-highlight-bg: #555555;
+    --syntax-text: #dddddd;
+    --syntax-comment: #aaaaaa;
+    --syntax-keyword: #66ccff;
+    --syntax-string: #ff6699;
+    --syntax-number: #ffcc66;
+    --syntax-function: #ffccff;
+    --syntax-class: #66ffcc;
+    --syntax-variable: #ff6600;
+    --syntax-operator: #cccccc;
+    --syntax-tag: #99ccff;
+    --syntax-attribute: #99ccff;
+    --syntax-constant: #b2ff66;
+    --syntax-error: #ff4d4d;
+    --syntax-error-bg: #660000;
+    --syntax-heading: #99ff99;
+    --syntax-prompt: #6699ff;
+    --syntax-output: #dddddd;
+    --syntax-whitespace: #555555;
+    --syntax-insertion-bg: #336633;
+    --syntax-insertion-border: #66ff66;
+    --syntax-deletion-bg: #663333;
+    --syntax-deletion-border: #ff6666;
+    --syntax-others: #b2ff66;
   }
 }
 
-// Dark Poole theme
-[data-theme="dark-poole"] {
-  // --body-color: var(--dark-poole-002);
-  // --body-bg: var(--dark-poole-001);
-  // --heading-color: var(--dark-poole-002);
-  // --link-color: var(--dark-poole-link-color);
-  // --link-hover-color: var(--dark-poole-link-hover);
-  // --border-color: rgba(255, 255, 255, 0.15);
-  // --code-bg: var(--gray-900);
+// Explicit dark theme (manual toggle)
+[data-theme="dark"] {
+  --body-color: #d3d7da;
+  --body-bg: #17191a;
 
-  --body-color: #d3d7da; /* 更柔和的浅色，与深背景对比清晰 */
-  --body-bg: #17191a;    /* 你提供的新背景颜色 */
-  --heading-color: #e0e2e4; /* 比 body-color 略亮，突出标题 */
-  --link-color: #989071;   /* 偏蓝的浅色，在深背景下醒目 */
-  --link-hover-color: #989071; /* 鼠标悬停时更亮的蓝色 */
-  --border-color: rgba(255, 255, 255, 0.1); /* 略微降低透明度，更融入深背景 */
-  --code-bg: #000000;     /* 常见的深色代码背景，与整体风格协调 */
+  --link-color: #989071;
+  --link-hover-color: #989071;
+
+  --heading-color: #e0e2e4;
+  --heading-border-color: #53595d;
+
+  --h4-color: #99ccff;
+
+  --blockquote-color: #90ee90;
+  --blockquote-border-color: #ffffff;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  --code-bg: #000000;
+
+  --inline-code-bg: #2f3335;
+  --inline-code-color: #f89704;
+
+  --code-block-bg: #262a2b;
+  --code-scrollbar-thumb: #555555;
+  --code-scrollbar-track: #222222;
+  --code-label-color: #bbbbbb;
+  --code-label-bg: rgba(0, 0, 0, 0.35);
+
+  --toc-toggle-bg: #74a6d8;
+  --toc-toggle-color: #000000;
+  --toc-bg: #000000;
+  --toc-border-color: #3e4446;
+  --toc-link-color: #989071;
+
+  --swatch-shadow: rgba(255, 255, 255, 0.15);
+
+  --syntax-background: #262a2b;
+  --syntax-text: #dddddd;
+  --syntax-comment: #aaaaaa;
+  --syntax-keyword: #66ccff;
+  --syntax-string: #ff6699;
+  --syntax-number: #ffcc66;
+  --syntax-function: #ffccff;
+  --syntax-class: #66ffcc;
+  --syntax-variable: #ff6600;
+  --syntax-operator: #cccccc;
+  --syntax-tag: #99ccff;
+  --syntax-attribute: #99ccff;
+  --syntax-constant: #b2ff66;
+  --syntax-error: #ff4d4d;
+  --syntax-error-bg: #660000;
+  --syntax-heading: #99ff99;
+  --syntax-prompt: #6699ff;
+  --syntax-output: #dddddd;
+  --syntax-whitespace: #555555;
+  --syntax-insertion-bg: #336633;
+  --syntax-insertion-border: #66ff66;
+  --syntax-deletion-bg: #663333;
+  --syntax-deletion-border: #ff6666;
+  --syntax-others: #b2ff66;
+}
+
+// Explicit light theme (manual override)
+[data-theme="light"] {
+  --body-color: #24292f;
+  --body-bg: #ffffff;
+
+  --link-color: #0969da;
+  --link-hover-color: #0550ae;
+
+  --heading-color: #1a1d20;
+  --heading-border-color: #d0d7de;
+
+  --h4-color: #0969da;
+
+  --blockquote-color: #1a7f37;
+  --blockquote-border-color: #2da44e;
+
+  --border-color: #d0d7de;
+
+  --code-bg: #f6f8fa;
+
+  --inline-code-bg: rgba(175, 184, 193, 0.2);
+  --inline-code-color: #24292f;
+
+  --code-block-bg: #f6f8fa;
+  --code-scrollbar-thumb: #afb8c1;
+  --code-scrollbar-track: #eaeef2;
+  --code-label-color: #656d76;
+  --code-label-bg: rgba(175, 184, 193, 0.4);
+
+  --toc-toggle-bg: #0969da;
+  --toc-toggle-color: #ffffff;
+  --toc-bg: #ffffff;
+  --toc-border-color: #d0d7de;
+  --toc-link-color: #0969da;
+
+  --swatch-shadow: rgba(0, 0, 0, 0.15);
+
+  --syntax-background: #f6f8fa;
+  --syntax-highlight-bg: rgba(0, 0, 0, 0.05);
+  --syntax-text: #24292f;
+  --syntax-comment: #6e7781;
+  --syntax-keyword: #cf222e;
+  --syntax-string: #0a3069;
+  --syntax-number: #0550ae;
+  --syntax-function: #8250df;
+  --syntax-class: #953800;
+  --syntax-variable: #953800;
+  --syntax-operator: #24292f;
+  --syntax-tag: #116329;
+  --syntax-attribute: #0550ae;
+  --syntax-constant: #0550ae;
+  --syntax-error: #cf222e;
+  --syntax-error-bg: #ffebe9;
+  --syntax-heading: #0550ae;
+  --syntax-prompt: #0550ae;
+  --syntax-output: #656d76;
+  --syntax-whitespace: #afb8c1;
+  --syntax-insertion-bg: #dafbe1;
+  --syntax-insertion-border: #116329;
+  --syntax-deletion-bg: #ffebe9;
+  --syntax-deletion-border: #cf222e;
+  --syntax-others: #0550ae;
 }

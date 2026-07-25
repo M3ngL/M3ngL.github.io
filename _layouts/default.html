@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark-poole">
+<html lang="en">
   {% include head.html %}
 
   <body>
@@ -12,6 +12,14 @@
             {% for nav in site.nav %}
             <small><a href="{{ nav.url }}">{{ nav.title }}</a></small>
             {% endfor %}
+            <button id="theme-toggle" aria-label="Toggle theme">
+              <svg class="theme-icon-light" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-13a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1Zm0 16a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1Zm11-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2ZM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm15.657-6.343a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414 0ZM6.343 17.657a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414a1 1 0 0 0-1.414 0ZM18.343 17.657a1 1 0 0 0-1.414 0l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414a1 1 0 0 0 0-1.414ZM7.757 5.757a1 1 0 0 0 1.414-1.414L7.757 2.929A1 1 0 0 0 6.343 4.343l1.414 1.414Z"/>
+              </svg>
+              <svg class="theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+              </svg>
+            </button>
           </nav>
         </h3>
       </header>
@@ -61,7 +69,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const headers = document.querySelectorAll("article h2, article h3, article h4, article h5, article h6");
       const nums = [0, 0, 0, 0, 0];
-    
+
       headers.forEach((h) => {
     let level = parseInt(h.tagName.substring(1)) - 2; // h2 为 0
     if (level >= 0 && level < nums.length) {
@@ -75,6 +83,15 @@
       h.innerHTML = `${prefix} ${h.innerHTML}`;
     }
   });
+
+      const toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem("theme", next);
+        });
+      }
 });
     </script>
 

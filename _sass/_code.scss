@@ -10,8 +10,8 @@ pre {
 
 code {
   font-size: 85%;
-  background-color: var(--inline-code-bg, #2f3335);
-  color: var(--inline-code-color, #f89704); /* 内联代码文字色：红色 */
+  background-color: var(--inline-code-bg);
+  color: var(--inline-code-color); /* 内联代码文字色 */
   border-radius: var(--border-radius, 3px);
   padding: 3px 4px; /* 内边距 */
 }
@@ -21,7 +21,7 @@ pre {
   margin-top: 0;
   margin-bottom: var(--spacer-3);
   overflow: auto;
-  scrollbar-color: #555 #222; /* thumb track */
+  scrollbar-color: var(--code-scrollbar-thumb) var(--code-scrollbar-track); /* thumb track */
 
   scrollbar-width: 3px;
 }
@@ -36,9 +36,7 @@ pre {
 .highlight {
   padding: var(--spacer);
   margin-bottom: var(--spacer);
-  // background-color: var(--code-bg);
-  // background-color: #333333;    
-  background-color: #262a2b;     
+  background-color: var(--code-block-bg);
   border-radius: var(--border-radius);
 
   pre {
@@ -113,8 +111,8 @@ pre {
 
   font-size: 16px;
   font-family: var(--code-font);
-  color: #bbb;
-  background: rgba(0, 0, 0, 0.35);
+  color: var(--code-label-color);
+  background: var(--code-label-bg);
 
   padding: 2px 8px;
   border-radius: 10px;

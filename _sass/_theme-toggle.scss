@@ -1,0 +1,44 @@
+// Theme toggle button in masthead
+
+#theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.75rem;
+  padding: 0.25rem;
+  background: transparent;
+  border: 0;
+  color: var(--link-color);
+  cursor: pointer;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: var(--link-hover-color);
+  }
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: currentColor;
+  }
+}
+
+.theme-icon-dark {
+  display: none;
+}
+
+.theme-icon-light {
+  display: block;
+}
+
+html[data-theme="dark"] {
+  .theme-icon-light {
+    display: none;
+  }
+
+  .theme-icon-dark {
+    display: block;
+  }
+}

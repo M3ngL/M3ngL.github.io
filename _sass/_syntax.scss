@@ -1,66 +1,66 @@
-.highlight .hll { background-color: #555555; } /* 略微更深的背景，用于高亮行 */
-.highlight .c { color: #aaa; } /* 注释 - 更浅的灰色 */
-.highlight .err { color: #ff4d4d; background-color: #660000 } /* 错误 - 鲜艳的红色背景 */
-.highlight .k { color: #66ccff; } /* 关键字 - 鲜艳的蓝色 */
-.highlight .o { color: #ccc; } /* 操作符 - 浅灰色 */
-.highlight .cm { color: #80cbc4; font-style: italic } /* 多行注释 - 青色 */
-.highlight .cp { color: #b2ff66; } /* 预处理器 - 亮绿色 */
-.highlight .c1 { color: #aaa; } /* 单行注释 - 更浅的灰色 */
-.highlight .cs { color: #f0f090; } /* 特殊注释 - 黄色 */
-.highlight .gd { background-color: #663333; border: 1px solid #ff6666 } /* 删除 - 深红色背景 */
-.highlight .ge { font-style: italic; color: #cc99ff } /* 强调 - 淡紫色 */
-.highlight .gr { color: #ff6666; } /* 错误（通用） - 亮红色 */
-.highlight .gh { color: #99ff99; } /* 标题（通用） - 亮绿色 */
-.highlight .gi { background-color: #336633; border: 1px solid #66ff66 } /* 插入 - 深绿色背景 */
-.highlight .go { color: #ddd; } /* 输出（通用） - 非常浅的灰色 */
-.highlight .gp { color: #6699ff; } /* 提示符 - 亮蓝色 */
-.highlight .gs { color: #fff; font-weight: bold } /* 强壮（通用） - 白色粗体 */
-.highlight .gu { color: #ff6600; } /* 子标题（通用） - 橙色 */
-.highlight .gt { color: #b8f28b; } /* 回溯 - 亮绿色 */
-.highlight .kc { color: #66ccff; } /* 常量关键字 - 鲜艳的蓝色 */
-.highlight .kd { color: #66ccff; } /* 声明关键字 - 鲜艳的蓝色 */
-.highlight .kn { color: #66ccff; } /* 命名空间关键字 - 鲜艳的蓝色 */
-.highlight .kp { color: #66ccff; } /* 伪关键字 - 鲜艳的蓝色 */
-.highlight .kr { color: #66ccff; } /* 保留关键字 - 鲜艳的蓝色 */
-.highlight .kt { color: #cc99ff; } /* 类型关键字 - 淡紫色 */
-.highlight .m { color: #ffcc66; } /* 数字 - 橙黄色 */
-.highlight .s { color: #ff6699; } /* 字符串 - 粉色 */
-.highlight .na { color: #99ccff; } /* 属性名 - 浅蓝色 */
-.highlight .nb { color: #b2ff66; } /* 内建名称 - 亮绿色 */
-.highlight .nc { color: #66ffcc; } /* 类名 - 青绿色 */
-.highlight .no { color: #b2ff66; } /* 常量名 - 亮绿色 */
-.highlight .nd { color: #ff99ff; } /* 装饰器名 - 紫红色 */
-.highlight .ni { color: #f0f090; } /* 实体名 - 黄色 */
-.highlight .ne { color: #ff4d4d; } /* 异常名 - 鲜艳的红色 */
-.highlight .nf { color: #ffccff; } /* 函数名 - 洋红色 */
-.highlight .nl { color: #ff99ff; } /* 标签名 - 紫红色 */
-.highlight .nn { color: #66ffff; } /* 命名空间名 - 青色 */
-.highlight .nt { color: #99ccff; } /* 标签名（HTML/XML） - 浅蓝色 */
-.highlight .nv { color: #ff6600; } /* 变量名 - 橙色 */
-.highlight .ow { color: #eee; } /* 运算符（单词形式） - 非常浅的灰色 */
-.highlight .w { color: #555; } /* 空格 - 深灰色 */
+.highlight .hll { background-color: var(--syntax-highlight-bg); }
+.highlight .c { color: var(--syntax-comment); } /* 注释 */
+.highlight .err { color: var(--syntax-error); background-color: var(--syntax-error-bg); } /* 错误 */
+.highlight .k { color: var(--syntax-keyword); } /* 关键字 */
+.highlight .o { color: var(--syntax-operator); } /* 操作符 */
+.highlight .cm { color: var(--syntax-comment); font-style: italic; } /* 多行注释 */
+.highlight .cp { color: var(--syntax-others); } /* 预处理器 */
+.highlight .c1 { color: var(--syntax-comment); } /* 单行注释 */
+.highlight .cs { color: var(--syntax-number); } /* 特殊注释 */
+.highlight .gd { background-color: var(--syntax-deletion-bg); border: 1px solid var(--syntax-deletion-border); } /* 删除 */
+.highlight .ge { font-style: italic; color: var(--syntax-function); } /* 强调 */
+.highlight .gr { color: var(--syntax-error); } /* 错误（通用） */
+.highlight .gh { color: var(--syntax-heading); } /* 标题（通用） */
+.highlight .gi { background-color: var(--syntax-insertion-bg); border: 1px solid var(--syntax-insertion-border); } /* 插入 */
+.highlight .go { color: var(--syntax-output); } /* 输出（通用） */
+.highlight .gp { color: var(--syntax-prompt); } /* 提示符 */
+.highlight .gs { color: var(--syntax-text); font-weight: bold; } /* 强壮（通用） */
+.highlight .gu { color: var(--syntax-variable); } /* 子标题（通用） */
+.highlight .gt { color: var(--syntax-constant); } /* 回溯 */
+.highlight .kc { color: var(--syntax-keyword); } /* 常量关键字 */
+.highlight .kd { color: var(--syntax-keyword); } /* 声明关键字 */
+.highlight .kn { color: var(--syntax-keyword); } /* 命名空间关键字 */
+.highlight .kp { color: var(--syntax-keyword); } /* 伪关键字 */
+.highlight .kr { color: var(--syntax-keyword); } /* 保留关键字 */
+.highlight .kt { color: var(--syntax-function); } /* 类型关键字 */
+.highlight .m { color: var(--syntax-number); } /* 数字 */
+.highlight .s { color: var(--syntax-string); } /* 字符串 */
+.highlight .na { color: var(--syntax-attribute); } /* 属性名 */
+.highlight .nb { color: var(--syntax-constant); } /* 内建名称 */
+.highlight .nc { color: var(--syntax-class); } /* 类名 */
+.highlight .no { color: var(--syntax-constant); } /* 常量名 */
+.highlight .nd { color: var(--syntax-function); } /* 装饰器名 */
+.highlight .ni { color: var(--syntax-number); } /* 实体名 */
+.highlight .ne { color: var(--syntax-error); } /* 异常名 */
+.highlight .nf { color: var(--syntax-function); } /* 函数名 */
+.highlight .nl { color: var(--syntax-function); } /* 标签名 */
+.highlight .nn { color: var(--syntax-class); } /* 命名空间名 */
+.highlight .nt { color: var(--syntax-tag); } /* 标签名（HTML/XML） */
+.highlight .nv { color: var(--syntax-variable); } /* 变量名 */
+.highlight .ow { color: var(--syntax-operator); } /* 运算符（单词形式） */
+.highlight .w { color: var(--syntax-whitespace); } /* 空格 */
 
-.highlight .mf { color: #ffcc66; } /* 浮点数 - 橙黄色 */
-.highlight .mh { color: #ffcc66; } /* 十六进制数 - 橙黄色 */
-.highlight .mi { color: #ffcc66; } /* 整数 - 橙黄色 */
-.highlight .mo { color: #ffcc66; } /* 八进制数 - 橙黄色 */
-.highlight .sb { color: #ff9966; } /* 反引号字符串 - 橙色 */
-.highlight .sc { color: #ff9966; } /* 字符 - 橙色 */
-.highlight .sd { color: #ff9966; font-style: italic } /* 文档字符串 - 橙色斜体 */
-.highlight .s2 { color: #ff9966; } /* 双引号字符串 - 橙色 */
-.highlight .se { color: #ff9966; } /* 转义字符 - 橙色 */
-.highlight .sh { color: #ff9966; } /* Heredoc 字符串 - 橙色 */
-.highlight .si { color: #ff4d4d; } /* 插值字符串 - 鲜艳的红色 */
-.highlight .sx { color: #ff9966; } /* 其他字符串 - 橙色 */
-.highlight .sr { color: #66ff99; } /* 正则表达式 - 亮绿色 */
-.highlight .s1 { color: #ff9966; } /* 单引号字符串 - 橙色 */
-.highlight .ss { color: #ffff66; } /* 符号 - 黄色 */
-.highlight .bp { color: #b2ff66; } /* 内建伪变量 - 亮绿色 */
-.highlight .vc { color: #ff9966; } /* 类变量 - 橙色 */
-.highlight .vg { color: #ff9966; } /* 全局变量 - 橙色 */
-.highlight .vi { color: #ff9966; } /* 实例变量 - 橙色 */
-.highlight .il { color: #ffcc66; } /* 长整数 - 橙黄色 */
+.highlight .mf { color: var(--syntax-number); } /* 浮点数 */
+.highlight .mh { color: var(--syntax-number); } /* 十六进制数 */
+.highlight .mi { color: var(--syntax-number); } /* 整数 */
+.highlight .mo { color: var(--syntax-number); } /* 八进制数 */
+.highlight .sb { color: var(--syntax-string); } /* 反引号字符串 */
+.highlight .sc { color: var(--syntax-string); } /* 字符 */
+.highlight .sd { color: var(--syntax-string); font-style: italic; } /* 文档字符串 */
+.highlight .s2 { color: var(--syntax-string); } /* 双引号字符串 */
+.highlight .se { color: var(--syntax-string); } /* 转义字符 */
+.highlight .sh { color: var(--syntax-string); } /* Heredoc 字符串 */
+.highlight .si { color: var(--syntax-error); } /* 插值字符串 */
+.highlight .sx { color: var(--syntax-string); } /* 其他字符串 */
+.highlight .sr { color: var(--syntax-constant); } /* 正则表达式 */
+.highlight .s1 { color: var(--syntax-string); } /* 单引号字符串 */
+.highlight .ss { color: var(--syntax-number); } /* 符号 */
+.highlight .bp { color: var(--syntax-constant); } /* 内建伪变量 */
+.highlight .vc { color: var(--syntax-variable); } /* 类变量 */
+.highlight .vg { color: var(--syntax-variable); } /* 全局变量 */
+.highlight .vi { color: var(--syntax-variable); } /* 实例变量 */
+.highlight .il { color: var(--syntax-number); } /* 长整数 */
 
 .css .o,
 .css .o + .nt,
-.css .nt + .nt { color: #ccc; } /* CSS 操作符和标签 - 浅灰色 */
+.css .nt + .nt { color: var(--syntax-operator); } /* CSS 操作符和标签 */

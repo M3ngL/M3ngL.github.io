@@ -76,7 +76,7 @@ article h2{
   position: relative;
   padding-bottom: 0.3em;
   margin-bottom: 1em;
-  border-bottom: 3px solid #53595d;
+  border-bottom: 3px solid var(--heading-border-color);
 }
 article h3{
   position: relative;
