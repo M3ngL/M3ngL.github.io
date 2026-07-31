@@ -90,5 +90,9 @@ layout: default
         });
       });
       </script>
-      
+
+  {% if page.locked %}
+  <script src="{{ '/assets/js/lock.js' | relative_url }}"></script>
+  {% endif %}
+
 </article>

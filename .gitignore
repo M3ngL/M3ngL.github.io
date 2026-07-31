@@ -44,3 +44,6 @@ validation-report.json
 node_modules
 tmp
 vendor/bundle
+
+# Local lock password file
+.blog_lock_key
