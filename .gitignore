@@ -47,3 +47,6 @@ vendor/bundle
 
 # Local lock password file
 .blog_lock_key
+
+# Python
+__pycache__/

@@ -1,0 +1,21 @@
+---
+layout: default
+title: Vault
+---
+
+<div id="vault-lock-ui" class="lock-ui">
+  <div class="lock-message">🔒 Vault 已加密，请输入密码查看加密文章列表：</div>
+  <div class="lock-form">
+    <input type="password" id="vault-password" class="lock-input" placeholder="密码" autocomplete="off" />
+    <button type="button" id="vault-unlock" class="lock-button">解锁</button>
+  </div>
+  <div id="vault-error" class="lock-error"></div>
+</div>
+
+<div id="vault-content" class="posts" style="display: none;"></div>
+
+<script id="vault-payload" type="application/json">
+{"data":"eyJ2IjogMSwgInNhbHQiOiAiZ05ac1F3aHZOYnUwaDRIcWxmUUQ4QT09IiwgIml2IjogIkxHVkJwU0FvTzd5R25BY3kiLCAiY3QiOiAiakhXdFR2TFI3YXhrM1FmU3NPOXFkcVlOcjU0bzJGRnBhby9UQTJuQzZpNnlmODg1Z0tZeUJ3R3Vrb3Y1ZVBCbm9EbVFjeGZSSzJBQmlENytIY2dObU8wbnF0b1ZRcTQ9IiwgIml0ZXIiOiAyMDAwMDB9"}
+</script>
+
+<script src="{{ '/assets/js/vault.js' | relative_url }}"></script>

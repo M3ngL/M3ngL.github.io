@@ -31,6 +31,21 @@ PASSWORD_FILE = ".blog_lock_key"
 POSTS_DIR = "_posts"
 IMG_DIR = "pic"
 ITERATIONS = 200000
+VAULT_FILE = "vault.html"
+
+
+def vault_password() -> str:
+    """Vault 页面密码与单篇文章加密密码共用，从本地 .blog_lock_key 读取。
+
+    该文件已被 .gitignore 忽略，不会提交到远端仓库。
+    """
+    path = Path(PASSWORD_FILE)
+    if not path.exists():
+        raise RuntimeError(
+            f"未找到 {PASSWORD_FILE}。请先设置加密密码（菜单选项 3），"
+            "或创建该文件并写入 Vault 密码。"
+        )
+    return path.read_text(encoding="utf-8").strip()
 
 
 def encrypt_html(html: str, password: str) -> str:
@@ -54,6 +69,130 @@ def encrypt_html(html: str, password: str) -> str:
         "iter": ITERATIONS,
     }
     return base64.b64encode(json.dumps(payload).encode("utf-8")).decode("ascii")
+
+
+def parse_front_matter(md_text: str) -> dict:
+    """解析 Jekyll front matter，返回字段字典。"""
+    if not md_text.startswith("---"):
+        return {}
+    end = md_text.find("---", 3)
+    if end == -1:
+        return {}
+    fm_text = md_text[3:end].strip()
+    result = {}
+    for line in fm_text.splitlines():
+        line = line.rstrip()
+        if not line or line.strip().startswith("#"):
+            continue
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if value.lower() == "true":
+            value = True
+        elif value.lower() == "false":
+            value = False
+        result[key] = value
+    return result
+
+
+def build_post_url(post: Path, fm: dict) -> str:
+    """根据 Jekyll pretty permalink 规则生成文章 URL。
+
+    格式: /<category>/<year>/<month>/<day>/<slug>/
+    其中 slug 取自文件名中日期前缀之后的部分。
+    """
+    from urllib.parse import quote
+
+    stem = post.stem
+    date_str = fm.get("date") or stem[:10]
+    if len(stem) > 10 and stem[10] == "-":
+        slug = stem[11:]
+    else:
+        slug = stem
+    category = quote((fm.get("category") or "Other").lower(), safe="")
+    slug = quote(slug.replace(" ", "-"), safe="")
+    date_parts = str(date_str).split("-")
+    year, month, day = date_parts[0], date_parts[1], date_parts[2][:2]
+    return f"/{category}/{year}/{month}/{day}/{slug}/"
+
+
+def collect_locked_posts() -> list[dict]:
+    """扫描 _posts/ 下 locked: true 的文章，返回排序后的文章信息列表。"""
+    posts_dir = Path(POSTS_DIR)
+    if not posts_dir.exists():
+        return []
+
+    locked = []
+    for post in sorted(posts_dir.glob("*.md")):
+        try:
+            text = post.read_text(encoding="utf-8")
+            fm = parse_front_matter(text)
+            if fm.get("locked") is True:
+                locked.append({
+                    "title": fm.get("title", post.stem),
+                    "category": fm.get("category", "Other"),
+                    "date": fm.get("date", post.stem[:10]),
+                    "url": build_post_url(post, fm),
+                })
+        except Exception:
+            continue
+    return locked
+
+
+def build_vault_html(posts: list[dict]) -> str:
+    """按 category 分组生成 Vault 文章列表 HTML。"""
+    if not posts:
+        return '<p style="text-align:center;">暂无加密文章。</p>'
+
+    from itertools import groupby
+    posts_sorted = sorted(posts, key=lambda p: (p["category"] or "Other", p["date"]))
+    lines = ['<div class="posts">']
+    for category, items in groupby(posts_sorted, key=lambda p: p["category"] or "Other"):
+        lines.append(f'  <h2 style="font-size:1.8rem; margin-bottom:1.4rem;">{category}</h2>')
+        lines.append('  <ul style="margin-bottom: 30px;">')
+        for post in items:
+            lines.append(
+                f'    <li style="margin-bottom: 20px;">'
+                f'<a href="{post["url"]}">{post["title"]}</a> - {post["date"]}</li>'
+            )
+        lines.append("  </ul>")
+    lines.append("</div>")
+    return "\n".join(lines)
+
+
+def regenerate_vault():
+    """重新生成 vault.html，将加密后的文章列表嵌入其中。"""
+    posts = collect_locked_posts()
+    html = build_vault_html(posts)
+    ciphertext = encrypt_html(html, vault_password())
+
+    vault_path = Path(VAULT_FILE)
+    template = f"""---
+layout: default
+title: Vault
+---
+
+<div id="vault-lock-ui" class="lock-ui">
+  <div class="lock-message">🔒 Vault 已加密，请输入密码查看加密文章列表：</div>
+  <div class="lock-form">
+    <input type="password" id="vault-password" class="lock-input" placeholder="密码" autocomplete="off" />
+    <button type="button" id="vault-unlock" class="lock-button">解锁</button>
+  </div>
+  <div id="vault-error" class="lock-error"></div>
+</div>
+
+<div id="vault-content" class="posts" style="display: none;"></div>
+
+<script id="vault-payload" type="application/json">
+{{\"data\":\"{ciphertext}\"}}
+</script>
+
+<script src="{{{{ '/assets/js/vault.js' | relative_url }}}}"></script>
+"""
+    vault_path.write_text(template, encoding="utf-8")
+    print(f"[Vault] 页面已重建: {vault_path} (包含 {len(posts)} 篇加密文章)")
 
 
 def render_markdown_to_html(md_text: str) -> str:
@@ -359,6 +498,8 @@ date: {today}
     if encrypt:
         print("🔒 文章已加密。请确保源文件不提交到仓库。")
 
+    regenerate_vault()
+
 
 def print_menu() -> str:
     status = "已设置" if password_is_set() else "未设置"
@@ -368,16 +509,19 @@ def print_menu() -> str:
     print("1. 上传文档")
     print("2. 重新上传文档（删除旧文章及关联图片）")
     print("3. 设置/修改加密密码")
-    print("4. 退出")
-    return input("请选择 [1-4]: ").strip()
+    print("4. 重建 Vault 页面")
+    print("5. 退出")
+    return input("请选择 [1-5]: ").strip()
 
 
 def main():
     while True:
         choice = print_menu()
-        if choice == "4":
+        if choice == "5":
             print("再见。")
             break
+        elif choice == "4":
+            regenerate_vault()
         elif choice == "3":
             set_password()
         elif choice in ("1", "2"):

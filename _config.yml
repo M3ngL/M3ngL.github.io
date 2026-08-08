@@ -36,6 +36,9 @@ nav:
   - title: Blog
     url: /archive
 
+  - title: Vault
+    url: /vault
+
   - title: About
     url: /about
 

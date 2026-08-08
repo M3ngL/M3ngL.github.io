@@ -15,7 +15,8 @@ layout: null
    <email>{{ site.author.email }}</email>
  </author>
 
- {% for post in site.posts %}
+ {% assign public_posts = site.posts | where_exp: "post", "post.locked != true" %}
+ {% for post in public_posts %}
  <entry>
    <title>{{ post.title | xml_escape }}</title>
    <link href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"/>

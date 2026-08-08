@@ -3,7 +3,8 @@ layout: default
 title: Archive
 ---
 
-{% assign postsByCategory = site.posts | group_by: "category" %}
+{% assign public_posts = site.posts | where_exp: "post", "post.locked != true" %}
+{% assign postsByCategory = public_posts | group_by: "category" %}
 {% for category in postsByCategory %}
   <h2 style="font-size:1.8rem; margin-bottom:1.4rem;">{{ category.name }}</h2>
   
