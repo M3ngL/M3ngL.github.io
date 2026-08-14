@@ -101,8 +101,8 @@
   }
 
   function reinitPostContent(container) {
-    numberHeadings(container);
     rebuildToc();
+    numberHeadings(container);
     linkifyUrls(container);
     if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
       MathJax.typesetPromise([container]);
