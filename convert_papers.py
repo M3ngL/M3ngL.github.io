@@ -450,10 +450,23 @@ def upload_post(src_path: str, category: str, encrypt: bool, reupload: bool):
 
     basename = src.stem
     today = datetime.now().strftime("%Y-%m-%d")
+    post_date = today
+    was_locked = False
 
     if reupload:
         existing = find_existing_post(basename)
         if existing:
+            try:
+                old_fm = parse_front_matter(existing.read_text(encoding="utf-8"))
+                old_date = old_fm.get("date")
+                if old_date:
+                    post_date = str(old_date).split()[0]
+                was_locked = old_fm.get("locked") is True
+            except Exception:
+                pass
+            if was_locked:
+                print("🔒 检测到原文章为加密文章，将保持加密状态。")
+                encrypt = True
             delete_post_and_images(existing)
         else:
             print("ℹ️  未找到旧文章，跳过删除。")
@@ -487,11 +500,11 @@ def upload_post(src_path: str, category: str, encrypt: bool, reupload: bool):
 layout: post
 title: {title}
 category: "{category}"
-date: {today}
+date: {post_date}
 {locked_line}{lock_images_lines}---
 """
 
-    out_path = Path(POSTS_DIR) / f"{today}-{basename}.md"
+    out_path = Path(POSTS_DIR) / f"{post_date}-{basename}.md"
     out_path.write_text(front_matter + "\n" + body, encoding="utf-8")
     print(f"✅ 已生成: {out_path}")
 
