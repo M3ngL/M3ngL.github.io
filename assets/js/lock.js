@@ -109,13 +109,23 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector(".locked-content");
-    if (!container) return;
+  const PASSWORD_KEY = "vault_unlocked_password";
+  const TIME_KEY = "vault_unlock_time";
+  const TTL = 24 * 60 * 60 * 1000;
 
-    const ciphertext = container.getAttribute("data-ciphertext");
-    if (!ciphertext) return;
+  function getCachedPassword() {
+    const password = localStorage.getItem(PASSWORD_KEY);
+    const time = localStorage.getItem(TIME_KEY);
+    if (!password || !time) return null;
+    if (Date.now() - parseInt(time, 10) > TTL) {
+      localStorage.removeItem(PASSWORD_KEY);
+      localStorage.removeItem(TIME_KEY);
+      return null;
+    }
+    return password;
+  }
 
+  function createLockUi() {
     const ui = document.createElement("div");
     ui.className = "lock-ui";
     ui.innerHTML = `
@@ -126,6 +136,20 @@
       </div>
       <div class="lock-error"></div>
     `;
+    return ui;
+  }
+
+  async function decryptAndRender(password, ciphertext, container) {
+    const html = await decrypt(ciphertext, password);
+    const content = document.createElement("div");
+    content.className = "unlocked-content";
+    content.innerHTML = html;
+    container.replaceWith(content);
+    reinitPostContent(content);
+  }
+
+  function showUnlockUi(container, ciphertext) {
+    const ui = createLockUi();
     container.replaceWith(ui);
 
     const input = ui.querySelector(".lock-input");
@@ -143,12 +167,7 @@
       button.textContent = "解锁中...";
 
       try {
-        const html = await decrypt(ciphertext, password);
-        const content = document.createElement("div");
-        content.className = "unlocked-content";
-        content.innerHTML = html;
-        ui.replaceWith(content);
-        reinitPostContent(content);
+        await decryptAndRender(password, ciphertext, ui);
       } catch (e) {
         error.textContent = "密码错误，请重试。";
         button.disabled = false;
@@ -161,5 +180,22 @@
       if (e.key === "Enter") unlock();
     });
     input.focus();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".locked-content");
+    if (!container) return;
+
+    const ciphertext = container.getAttribute("data-ciphertext");
+    if (!ciphertext) return;
+
+    const cachedPassword = getCachedPassword();
+    if (cachedPassword) {
+      decryptAndRender(cachedPassword, ciphertext, container).catch(() => {
+        showUnlockUi(container, ciphertext);
+      });
+    } else {
+      showUnlockUi(container, ciphertext);
+    }
   });
 })();

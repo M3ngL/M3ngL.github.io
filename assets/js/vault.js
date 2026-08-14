@@ -1,15 +1,21 @@
 (function () {
   "use strict";
 
-  const HASH_KEY = "vault_auth_hash";
   const CONTENT_KEY = "vault_unlocked_content";
+  const PASSWORD_KEY = "vault_unlocked_password";
+  const TIME_KEY = "vault_unlock_time";
+  const TTL = 24 * 60 * 60 * 1000;
 
-  async function digestPassword(password) {
-    const enc = new TextEncoder();
-    const buf = await window.crypto.subtle.digest("SHA-256", enc.encode(password));
-    return Array.from(new Uint8Array(buf))
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+  function getCachedPassword() {
+    const password = localStorage.getItem(PASSWORD_KEY);
+    const time = localStorage.getItem(TIME_KEY);
+    if (!password || !time) return null;
+    if (Date.now() - parseInt(time, 10) > TTL) {
+      localStorage.removeItem(PASSWORD_KEY);
+      localStorage.removeItem(TIME_KEY);
+      return null;
+    }
+    return password;
   }
 
   async function deriveKey(password, salt, iterations) {
@@ -69,45 +75,6 @@
     if (lockUi) {
       lockUi.style.display = "none";
     }
-    renderLockButton();
-  }
-
-  function renderLockButton() {
-    if (document.getElementById("vault-lock-button")) return;
-    const container = document.getElementById("vault-content");
-    if (!container) return;
-
-    const wrapper = document.createElement("div");
-    wrapper.style.textAlign = "center";
-
-    const btn = document.createElement("button");
-    btn.id = "vault-lock-button";
-    btn.type = "button";
-    btn.className = "lock-button";
-    btn.style.marginTop = "1.5rem";
-    btn.textContent = "🔒 锁定 Vault";
-    btn.addEventListener("click", lockVault);
-
-    wrapper.appendChild(btn);
-    container.appendChild(wrapper);
-  }
-
-  function showLockUi() {
-    const container = document.getElementById("vault-content");
-    const lockUi = document.getElementById("vault-lock-ui");
-    if (container) {
-      container.innerHTML = "";
-      container.style.display = "none";
-    }
-    if (lockUi) {
-      lockUi.style.display = "";
-    }
-  }
-
-  function lockVault() {
-    localStorage.removeItem(HASH_KEY);
-    sessionStorage.removeItem(CONTENT_KEY);
-    showLockUi();
   }
 
   async function tryUnlock(password, saveOnSuccess) {
@@ -120,9 +87,9 @@
     try {
       const html = await decrypt(payload.data, password);
       if (saveOnSuccess) {
-        const hash = await digestPassword(password);
-        localStorage.setItem(HASH_KEY, hash);
         sessionStorage.setItem(CONTENT_KEY, html);
+        localStorage.setItem(PASSWORD_KEY, password);
+        localStorage.setItem(TIME_KEY, Date.now().toString());
       }
       renderUnlocked(html);
       return true;
@@ -181,9 +148,15 @@
     input.focus();
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!restoreFromSession()) {
-      bindUnlockEvents();
+  document.addEventListener("DOMContentLoaded", async function () {
+    if (restoreFromSession()) return;
+
+    const cachedPassword = getCachedPassword();
+    if (cachedPassword) {
+      const ok = await tryUnlock(cachedPassword, true);
+      if (ok) return;
     }
+
+    bindUnlockEvents();
   });
 })();
