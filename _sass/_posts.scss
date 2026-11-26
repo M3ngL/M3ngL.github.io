@@ -12,6 +12,16 @@
   }
 }
 
+// Home page article links (separate from links in post content)
+.home-post-link {
+  color: var(--home-post-link-color);
+
+  &:hover,
+  &:focus {
+    color: var(--home-post-link-color);
+  }
+}
+
 // Blog post or page title
 .page-title,
 .post-title {

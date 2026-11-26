@@ -12,7 +12,7 @@ title: Home
   <ul style="margin-bottom: 30px;">
     {% for post in category.items %}
       <li style="margin-bottom: 20px;">
-        <a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}
+        <a class="home-post-link" href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}
       </li>
     {% endfor %}
   </ul>
