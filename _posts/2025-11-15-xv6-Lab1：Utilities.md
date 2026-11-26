@@ -370,6 +370,7 @@ int main(){
 ````
 
 递归 + 创建管道，使得程序能够**并发**解决问题
+
 $$
 \text{filter}(S) = 
 \begin{cases}
@@ -377,6 +378,7 @@ $$
 \text{write}\ \ p \quad \text{if} \ (x \mod p \not\equiv 0) & \text{otherwise}
 \end{cases}
 $$
+
 `fork()` 和 `wait()` 必须一一对应，否则父进程无法退出，导致控制权回不到 Shell 程序中
 
 展开看看 `read` 系统调用，从用户空间到内核空间的调用逻辑和 `sleep` 系统调用一致

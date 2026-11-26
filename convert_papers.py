@@ -195,6 +195,42 @@ title: Vault
     print(f"[Vault] 页面已重建: {vault_path} (包含 {len(posts)} 篇加密文章)")
 
 
+def normalize_display_math(md_text: str) -> str:
+    """让独占一行的成对 $$ 成为 Markdown 块，不改动代码围栏内的内容。"""
+    lines = md_text.splitlines(keepends=True)
+    markers = []
+    fence_char = None
+    fence_length = 0
+
+    for index, line in enumerate(lines):
+        text = line.rstrip("\r\n")
+        fence = re.match(r"^ {0,3}(`{3,}|~{3,})", text)
+        if fence_char:
+            if re.fullmatch(r" {0,3}" + re.escape(fence_char) +
+                            "{" + str(fence_length) + r",}[ \t]*", text):
+                fence_char = None
+            continue
+        if fence:
+            fence_char = fence.group(1)[0]
+            fence_length = len(fence.group(1))
+            continue
+        if re.fullmatch(r" {0,3}\$\$[ \t]*", text):
+            markers.append(index)
+
+    # 只处理完整的公式块；不成对的 $$ 交给原有 Markdown 行为。
+    paired = markers[:len(markers) // 2 * 2]
+    openings = set(paired[::2])
+    closings = set(paired[1::2])
+    result = []
+    for index, line in enumerate(lines):
+        if index in openings and index > 0 and lines[index - 1].strip():
+            result.append("\n")
+        result.append(line)
+        if index in closings and index + 1 < len(lines) and lines[index + 1].strip():
+            result.append("\n")
+    return "".join(result)
+
+
 def render_markdown_to_html(md_text: str) -> str:
     """将 Markdown 渲染为 HTML，用于加密前本地处理。"""
     if not MARKDOWN_AVAILABLE:
@@ -474,6 +510,7 @@ def upload_post(src_path: str, category: str, encrypt: bool, reupload: bool):
     md_text = src.read_text(encoding="utf-8")
     md_text = process_images(md_text)
     title, content = extract_title_and_content(md_text)
+    content = normalize_display_math(content)
 
     if not title:
         print(f"❌ 未找到一级标题，跳过: {src_path}")
